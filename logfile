@@ -15,3 +15,4 @@
 2021-03-28 01:51:29.509 IST [33585] STATEMENT:  SELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1
 2021-03-28 01:51:29.783 IST [33585] ERROR:  column users.username does not exist at character 37
 2021-03-28 01:51:29.783 IST [33585] STATEMENT:  SELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1
+2021-04-12 16:02:02.013 IST [15641] FATAL:  database "airlines_development" does not exist
