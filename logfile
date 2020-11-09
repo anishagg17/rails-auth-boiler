@@ -6,3 +6,6 @@
 2021-03-27 16:16:42.014 IST [14077] LOG:  database system is ready to accept connections
 2021-03-27 19:07:51.478 IST [18131] ERROR:  column "email" of relation "users" already exists
 2021-03-27 19:07:51.478 IST [18131] STATEMENT:  ALTER TABLE "users" ADD "email" character varying
+2021-03-27 19:47:06.539 IST [20514] ERROR:  duplicate key value violates unique constraint "index_users_on_email"
+2021-03-27 19:47:06.539 IST [20514] DETAIL:  Key (email)=(anish111@mail5.net) already exists.
+2021-03-27 19:47:06.539 IST [20514] STATEMENT:  INSERT INTO "users" ("name", "password", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"
