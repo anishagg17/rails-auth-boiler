@@ -9,11 +9,28 @@ module Api
 
         def create
             user = User.new(user_params)
+            user['password'] = BCrypt::Password.create(user['password'])
 
             if user.save
                 render json: UserSerializer.new(user).serialized_json
             else
                 render json: {error: user.errors.messages }, status: 422
+            end
+        end
+
+        def login
+            user = params["user"]
+            userInDB = User.where(email: user['email'])
+            
+            if userInDB
+                userInDB = userInDB[0]
+                if BCrypt::Password.new(userInDB['password']) == user['password']
+                    render json: {msg: "Login Successful" }, status: 200
+                else
+                    render json: {error: "Invalid password" }, status: 422  
+                end
+            else
+               render json: {error: "User not found" }, status: 422 
             end
         end
 
