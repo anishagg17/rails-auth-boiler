@@ -12,7 +12,7 @@ module Api
             user['password'] = BCrypt::Password.create(user['password'])
 
             if user.save
-                render json: UserSerializer.new(user).serialized_json
+                render json: {data: tokenize(user)}, status: 200
             else
                 render json: {error: user.errors.messages }, status: 422
             end
@@ -25,7 +25,7 @@ module Api
             if userInDB
                 userInDB = userInDB[0]
                 if BCrypt::Password.new(userInDB['password']) == user['password']
-                    render json: {msg: "Login Successful" }, status: 200
+                    render json: {data: tokenize(userInDB)}, status: 200
                 else
                     render json: {error: "Invalid password" }, status: 422  
                 end
@@ -38,6 +38,15 @@ module Api
 
         def user_params
             params.require(:user).permit(:name, :email, :password)
+        end
+
+        def tokenize(payload)
+            token = JsonWebToken.encode(payload: payload)
+            time = Time.now + 24.hours.to_i 
+            return {
+                time: time,
+                token: token
+            }     
         end
     end    
 end
