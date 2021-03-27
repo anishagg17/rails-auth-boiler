@@ -9,3 +9,9 @@
 2021-03-27 19:47:06.539 IST [20514] ERROR:  duplicate key value violates unique constraint "index_users_on_email"
 2021-03-27 19:47:06.539 IST [20514] DETAIL:  Key (email)=(anish111@mail5.net) already exists.
 2021-03-27 19:47:06.539 IST [20514] STATEMENT:  INSERT INTO "users" ("name", "password", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"
+2021-03-28 01:51:29.500 IST [33585] ERROR:  column users.username does not exist at character 37
+2021-03-28 01:51:29.500 IST [33585] STATEMENT:  SELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1
+2021-03-28 01:51:29.509 IST [33585] ERROR:  column users.username does not exist at character 37
+2021-03-28 01:51:29.509 IST [33585] STATEMENT:  SELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1
+2021-03-28 01:51:29.783 IST [33585] ERROR:  column users.username does not exist at character 37
+2021-03-28 01:51:29.783 IST [33585] STATEMENT:  SELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1
